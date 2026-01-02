@@ -16,6 +16,10 @@ if (bearerToken) {
       const request = args.request as any;
       if (request.headers) {
         request.headers["Authorization"] = `Bearer ${bearerToken}`;
+        // Remove AWS specific headers that might conflict
+        delete request.headers["x-amz-date"];
+        delete request.headers["x-amz-security-token"];
+        delete request.headers["x-amz-content-sha256"];
       }
       return next(args);
     },
@@ -24,4 +28,7 @@ if (bearerToken) {
       name: "addBearerTokenMiddleware",
     }
   );
+  
+  // Remove the signing middleware to prevent SigV4 signing with dummy credentials
+  bedrock.middlewareStack.remove("signing");
 }
