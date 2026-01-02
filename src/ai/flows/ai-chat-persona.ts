@@ -45,7 +45,7 @@ ${articlesString}
 `;
 
   const command = new ConverseCommand({
-    modelId: "amazon.nova-lite-v1:0",
+    modelId: "amazon.nova-micro-v1:0",
     messages: [
       {
         role: "user",

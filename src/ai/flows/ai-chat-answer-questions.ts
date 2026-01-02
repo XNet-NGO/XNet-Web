@@ -22,7 +22,7 @@ export async function aiChatAnswerQuestions(
   const systemPrompt = `You are Alfred, the AI chatbot representative of XNet. Answer the following question about XNet.`;
 
   const command = new ConverseCommand({
-    modelId: "amazon.nova-lite-v1:0",
+    modelId: "amazon.nova-micro-v1:0",
     messages: [
       {
         role: "user",
