@@ -45,7 +45,7 @@ ${articlesString}
 
   try {
     const response = await invokeBedrockConverse(
-      "us.anthropic.claude-3-5-haiku-20241022-v1:0",
+      "amazon.nova-micro-v1:0",
       [
         {
           role: "user",
