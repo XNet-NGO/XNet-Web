@@ -22,7 +22,7 @@ export async function aiChatAnswerQuestions(
 
   try {
     const response = await invokeBedrockConverse(
-      "amazon.nova-micro-v1:0",
+      "us.anthropic.claude-3-5-haiku-20241022-v1:0",
       [
         {
           role: "user",
