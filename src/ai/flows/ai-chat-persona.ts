@@ -63,9 +63,9 @@ ${articlesString}
     const response = await bedrock.send(command);
     const outputText = response.output?.message?.content?.[0]?.text || "I'm sorry, I couldn't generate a response.";
     return { answer: outputText };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Bedrock error:", error);
     // Fallback or error handling
-    return { answer: "I'm sorry, I'm having trouble connecting to my brain right now. Please try again later." };
+    return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error details: ${error.message}` };
   }
 }
