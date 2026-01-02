@@ -4,7 +4,7 @@ export const bedrock = new BedrockRuntimeClient({
   region: process.env.AWS_REGION || "us-east-1",
   credentials: {
     accessKeyId: process.env.NOVA_API_TOKEN || "dummy",
-    secretAccessKey: "dummy",
+    secretAccessKey: process.env.NOVA_API_TOKEN || "dummy",
   },
 });
 
