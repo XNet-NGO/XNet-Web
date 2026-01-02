@@ -3,25 +3,25 @@ import { BedrockRuntimeClient } from "@aws-sdk/client-bedrock-runtime";
 export const bedrock = new BedrockRuntimeClient({
   region: process.env.AWS_REGION || "us-east-1",
   credentials: {
-    accessKeyId: process.env.NOVA_API_TOKEN || "dummy",
-    secretAccessKey: process.env.NOVA_API_TOKEN || "dummy",
+    accessKeyId: "dummy",
+    secretAccessKey: "dummy",
   },
 });
 
-const apiToken = process.env.NOVA_API_TOKEN;
+const bearerToken = process.env.AWS_BEARER_TOKEN_BEDROCK;
 
-if (apiToken) {
+if (bearerToken) {
   bedrock.middlewareStack.add(
     (next) => async (args) => {
       const request = args.request as any;
       if (request.headers) {
-        request.headers["x-api-token"] = apiToken;
+        request.headers["Authorization"] = `Bearer ${bearerToken}`;
       }
       return next(args);
     },
     {
-      step: "build",
-      name: "addApiTokenMiddleware",
+      step: "finalize",
+      name: "addBearerTokenMiddleware",
     }
   );
 }
