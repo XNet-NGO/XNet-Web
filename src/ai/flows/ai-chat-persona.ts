@@ -4,8 +4,7 @@
  * @fileOverview AI chatbot answering questions in the persona of Alfred.
  */
 
-import { bedrock } from '@/lib/bedrock';
-import { ConverseCommand } from "@aws-sdk/client-bedrock-runtime";
+import { invokeBedrockConverse } from '@/lib/bedrock';
 import { mission, nonprofit, values } from '@/lib/company-info';
 import { articles } from '@/lib/articles-data';
 import { z } from 'zod';
@@ -44,28 +43,26 @@ ${valuesString}
 ${articlesString}
 `;
 
-  const command = new ConverseCommand({
-    modelId: "amazon.nova-micro-v1:0",
-    messages: [
-      {
-        role: "user",
-        content: [{ text: query }],
-      },
-    ],
-    system: [{ text: systemPrompt }],
-    inferenceConfig: {
-      maxTokens: 1000,
-      temperature: 0.7,
-    },
-  });
-
   try {
-    const response = await bedrock.send(command);
+    const response = await invokeBedrockConverse(
+      "amazon.nova-micro-v1:0",
+      [
+        {
+          role: "user",
+          content: [{ text: query }],
+        },
+      ],
+      [{ text: systemPrompt }],
+      {
+        maxTokens: 1000,
+        temperature: 0.7,
+      }
+    );
+
     const outputText = response.output?.message?.content?.[0]?.text || "I'm sorry, I couldn't generate a response.";
     return { answer: outputText };
   } catch (error: any) {
     console.error("Bedrock error:", error);
-    const endpoint = process.env.BEDROCK_ENDPOINT || "default (AWS)";
-    return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error: ${error.message}. Endpoint: ${endpoint}` };
+    return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error: ${error.message}` };
   }
 }
