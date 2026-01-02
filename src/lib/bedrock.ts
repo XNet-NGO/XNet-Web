@@ -1,5 +1,5 @@
 export async function invokeBedrockConverse(modelId: string, messages: any[], system?: any[], inferenceConfig?: any) {
-  const region = process.env.AWS_REGION || "us-east-1";
+  const region = process.env.AWS_REGION || "us-west-2";
   const bearerToken = process.env.AWS_BEARER_TOKEN_BEDROCK;
 
   if (!bearerToken) {
