@@ -65,7 +65,7 @@ ${articlesString}
     return { answer: outputText };
   } catch (error: any) {
     console.error("Bedrock error:", error);
-    // Fallback or error handling
-    return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error details: ${error.message}` };
+    const endpoint = process.env.BEDROCK_ENDPOINT || "default (AWS)";
+    return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error: ${error.message}. Endpoint: ${endpoint}` };
   }
 }
