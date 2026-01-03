@@ -37,7 +37,7 @@ export default function Home() {
               AI for Everyone
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              We build and deploy accessible AI solutions to bridge the digital divide and empower communities worldwide.
+              We build and deploy accessible AI solutions to and empower communities worldwide.
             </p>
           </div>
         </section>
