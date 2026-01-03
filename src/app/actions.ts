@@ -52,7 +52,7 @@ export async function submitContactForm(
 
     await transporter.sendMail({
       from: `"XNet Contact Form" <${smtpUser}>`, // sender address
-      to: "admin@xnet.ngo", // list of receivers
+      to: "joshuadoucette@xnet.ngo", // list of receivers
       replyTo: email,
       subject: `New contact form submission from ${name}`, // Subject line
       html: `You have a new message from <strong>${name}</strong> (${email}):<br><br>${message.replace(/\n/g, '<br>')}`, // html body
