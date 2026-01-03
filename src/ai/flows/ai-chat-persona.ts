@@ -24,7 +24,8 @@ export async function aiChatPersona(input: AiChatPersonaInput): Promise<AiChatPe
 
   // Convert values and articles to a string format for the prompt
   const valuesString = values.map(v => `${v.title}: ${v.description} ${v.details}`).join('\n');
-  const articlesString = articles.map(a => `Title: ${a.title}\nContent: ${a.content.map(c => c.text).join(' ')}`).join('\n\n');
+  // Only use title and excerpt to save tokens
+  const articlesString = articles.map(a => `Title: ${a.title}\nSummary: ${a.excerpt}`).join('\n\n');
 
   const systemPrompt = `You are Alfred, the AI chatbot representative of XNet, a nonprofit organization. Your purpose is to assist users by answering their questions about XNet based on the information provided below. Be helpful, friendly, and maintain a professional tone.
 
