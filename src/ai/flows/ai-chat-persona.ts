@@ -4,7 +4,7 @@
  * @fileOverview AI chatbot answering questions in the persona of Alfred.
  */
 
-import { invokeBedrockConverse } from '@/lib/bedrock';
+import { invokeHuggingFaceChat } from '@/lib/huggingface';
 import { mission, nonprofit, values } from '@/lib/company-info';
 import { articles } from '@/lib/articles-data';
 import { z } from 'zod';
@@ -44,25 +44,20 @@ ${articlesString}
 `;
 
   try {
-    const response = await invokeBedrockConverse(
-      "amazon.nova-micro-v1:0",
+    const response = await invokeHuggingFaceChat(
       [
         {
           role: "user",
-          content: [{ text: query }],
+          content: query,
         },
       ],
-      [{ text: systemPrompt }],
-      {
-        maxTokens: 1000,
-        temperature: 0.7,
-      }
+      systemPrompt
     );
 
     const outputText = response.output?.message?.content?.[0]?.text || "I'm sorry, I couldn't generate a response.";
     return { answer: outputText };
   } catch (error: any) {
-    console.error("Bedrock error:", error);
+    console.error("Hugging Face error:", error);
     return { answer: `I'm sorry, I'm having trouble connecting to my brain right now. Error: ${error.message}` };
   }
 }
