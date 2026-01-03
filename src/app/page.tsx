@@ -42,7 +42,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="mission" className="py-20 md:py-24 bg-card/80">
+        <section id="mission" className="py-20 md:py-24 bg-card/60">
           <div className="container mx-auto px-4 text-center max-w-4xl">
             <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4 text-primary">
               {mission.title}
@@ -53,7 +53,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="nonprofit" className="py-20 md:py-24 bg-background/80">
+        <section id="nonprofit" className="py-20 md:py-24 bg-background/60">
           <div className="container mx-auto px-4 text-center max-w-4xl">
             {nonprofit.icon}
             <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4">
@@ -65,14 +65,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="values" className="py-20 md:py-24 bg-card/80">
+        <section id="values" className="py-20 md:py-24 bg-card/60">
           <div className="container mx-auto px-4 max-w-4xl">
             <h2 className="font-headline text-4xl md:text-5xl font-bold text-center mb-12">
               Our Core Values
             </h2>
             <Accordion type="single" collapsible className="w-full space-y-4">
               {values.map((value) => (
-                <AccordionItem value={value.title} key={value.title} className="bg-background/80 border-none rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                <AccordionItem value={value.title} key={value.title} className="bg-background/60 border-none rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                   <AccordionTrigger className="p-6 text-left hover:no-underline">
                      <div className="flex items-center gap-4">
                         <div className="bg-primary/10 rounded-full p-3">
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="support" className="py-20 md:py-24 bg-background/80">
+        <section id="support" className="py-20 md:py-24 bg-background/60">
           <div className="container mx-auto px-4 text-center max-w-4xl">
             <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4 text-accent">Support Our Mission</h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-8">
