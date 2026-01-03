@@ -36,16 +36,6 @@ export function AiChat() {
       scrollToBottom();
     }
   }, [messages, isLoading, isOpen]);
-  
-  useEffect(() => {
-    // Automatically open the chat on desktop after a short delay
-    const timer = setTimeout(() => {
-        if (window.innerWidth >= 768) { // md breakpoint
-            setIsOpen(true);
-        }
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
