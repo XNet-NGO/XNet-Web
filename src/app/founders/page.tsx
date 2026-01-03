@@ -21,22 +21,22 @@ const founders = [
 export default function FoundersPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/Branding/banner-1.jpg"
-            alt="Founders Banner"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]"></div>
-        </div>
+      {/* Fixed Background Image with Overlay */}
+      <div className="fixed inset-0 z-0">
+        <Image
+          src="/Branding/banner-1.jpg"
+          alt="Founders Banner"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]"></div>
+      </div>
 
+      {/* Hero Section */}
+      <section className="relative z-10 h-[80vh] min-h-[500px] flex items-center justify-center">
         {/* Content */}
-        <div className="relative z-10 text-center px-4 container mx-auto">
+        <div className="text-center px-4 container mx-auto">
           <h1 className="font-headline text-5xl md:text-7xl font-bold text-primary mb-6 drop-shadow-sm">
             Meet Our Founders
           </h1>
@@ -47,7 +47,7 @@ export default function FoundersPage() {
       </section>
 
       {/* Founders Grid */}
-      <section className="py-24 bg-card/50">
+      <section className="py-24 bg-card/50 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {founders.map((founder) => (
