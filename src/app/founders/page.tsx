@@ -52,7 +52,7 @@ export default function FoundersPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {founders.map((founder) => (
               <div key={founder.name} className="group flex flex-col items-center text-center">
-                <div className="relative w-96 h-96 mb-8 rounded-full overflow-hidden border-4 border-primary/10 shadow-2xl transition-transform duration-300 group-hover:scale-105 group-hover:border-primary/30">
+                <div className="relative w-80 h-96 mb-8 rounded-2xl overflow-hidden border-4 border-primary/10 shadow-2xl transition-transform duration-300 group-hover:scale-105 group-hover:border-primary/30">
                   <Image
                     src={founder.image}
                     alt={founder.name}
