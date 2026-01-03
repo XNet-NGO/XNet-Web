@@ -4,17 +4,17 @@ const founders = [
   {
     name: "Joshua S. Doucette",
     title: "Founder and CEO",
-    image: "/Josh.jpg",
+    image: "/Execs/Josh.jpg",
   },
   {
     name: "Karrie A. Langton",
     title: "Founder and CFO",
-    image: "/Karrie.jpg",
+    image: "/Execs/Karrie.jpg",
   },
   {
     name: "Jonathon L. Frisbie",
     title: "Founder and CS",
-    image: "/Jon.jpg",
+    image: "/Execs/Jon.jpg",
   }
 ];
 
@@ -26,7 +26,7 @@ export default function FoundersPage() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/banner-1.jpg"
+            src="/Branding/banner-1.jpg"
             alt="Founders Banner"
             fill
             className="object-cover"
