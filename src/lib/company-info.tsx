@@ -37,3 +37,18 @@ export const values = [
     details: "We adhere to a strict code of ethics that governs our data handling, algorithm design, and business practices. Our AI ethics board regularly reviews our projects to ensure fairness, accountability, and transparency. We believe that building trust is as important as building technology."
   },
 ];
+
+export const founders = [
+  {
+    name: "Joshua S. Doucette",
+    title: "Founder and CEO",
+  },
+  {
+    name: "Karrie A. Langton",
+    title: "Founder and CFO",
+  },
+  {
+    name: "Jonathon L. Frisbie",
+    title: "Founder and CS",
+  }
+];

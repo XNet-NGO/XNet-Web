@@ -5,7 +5,7 @@
  */
 
 import { invokeHuggingFaceChat } from '@/lib/huggingface';
-import { mission, nonprofit, values } from '@/lib/company-info';
+import { mission, nonprofit, values, founders } from '@/lib/company-info';
 import { articles } from '@/lib/articles-data';
 import { z } from 'zod';
 
@@ -24,6 +24,7 @@ export async function aiChatPersona(input: AiChatPersonaInput): Promise<AiChatPe
 
   // Convert values and articles to a string format for the prompt
   const valuesString = values.map(v => `${v.title}: ${v.description} ${v.details}`).join('\n');
+  const foundersString = founders.map(f => `${f.name}: ${f.title}`).join('\n');
   // Only use title and excerpt to save tokens
   const articlesString = articles.map(a => `Title: ${a.title}\nSummary: ${a.excerpt}`).join('\n\n');
 
@@ -33,6 +34,9 @@ Here is the information about XNet:
 
 **Mission:**
 ${mission.title}: ${mission.description}
+
+**Founders:**
+${foundersString}
 
 **Nonprofit Status:**
 ${nonprofit.title}: ${nonprofit.description}
