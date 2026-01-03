@@ -22,14 +22,14 @@ export default function FoundersPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] min-h-[500px] flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/Branding/banner-1.jpg"
             alt="Founders Banner"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]"></div>
@@ -52,7 +52,7 @@ export default function FoundersPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             {founders.map((founder) => (
               <div key={founder.name} className="group flex flex-col items-center text-center">
-                <div className="relative w-72 h-72 mb-8 rounded-full overflow-hidden border-4 border-primary/10 shadow-2xl transition-transform duration-300 group-hover:scale-105 group-hover:border-primary/30">
+                <div className="relative w-96 h-96 mb-8 rounded-full overflow-hidden border-4 border-primary/10 shadow-2xl transition-transform duration-300 group-hover:scale-105 group-hover:border-primary/30">
                   <Image
                     src={founder.image}
                     alt={founder.name}
