@@ -15,19 +15,23 @@ const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
-      <main className="flex-grow">
-        <section id="hero" className="relative py-20 md:py-24 bg-background/80">
-          {heroImage && (
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              fill
-              className="object-cover opacity-5 dark:opacity-[0.03]"
-              data-ai-hint={heroImage.imageHint}
-              priority
-            />
-          )}
+    <div className="flex flex-col min-h-screen">
+      {/* Fixed Background Pattern */}
+      {heroImage && (
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover opacity-5 dark:opacity-[0.03]"
+            data-ai-hint={heroImage.imageHint}
+            priority
+          />
+        </div>
+      )}
+
+      <main className="flex-grow relative z-10">
+        <section id="hero" className="py-20 md:py-24 bg-transparent">
           <div className="container mx-auto px-4 relative text-center">
             <h1 className="font-headline text-5xl md:text-7xl font-bold mb-4 text-primary">
               AI for Everyone
