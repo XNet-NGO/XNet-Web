@@ -43,3 +43,7 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+# PM2
+.pm2
+.pm2 dump
+dump.pm2

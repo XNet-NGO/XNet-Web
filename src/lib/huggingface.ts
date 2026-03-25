@@ -1,21 +1,18 @@
 import { HfInference } from "@huggingface/inference";
 
-const hf = new HfInference(process.env.HF_TOKEN);
+const hf = new HfInference(process.env.HF_TOKEN, {
+  baseUrl: "https://router.huggingface.co"
+});
 
 export async function invokeHuggingFaceChat(messages: any[], systemPrompt?: string) {
   try {
-    // Combine system prompt with the first user message if possible, or just prepend it
-    // Hugging Face chat completion usually takes a list of messages.
-    // Some models support 'system' role, others don't. 
-    // Let's assume a standard chat structure.
-    
     const chatMessages = [
       ...(systemPrompt ? [{ role: "system", content: systemPrompt }] : []),
       ...messages
     ];
 
     const response = await hf.chatCompletion({
-      model: "google/gemma-2-2b-it",
+      model: "meta-llama/Llama-3.2-1B-Instruct",
       messages: chatMessages,
       max_tokens: 500,
       temperature: 0.7
@@ -32,12 +29,11 @@ export async function invokeHuggingFaceChat(messages: any[], systemPrompt?: stri
     };
   } catch (error) {
     console.error("Hugging Face API Error:", error);
-    // Fallback response
     return {
       output: {
         message: {
           content: [{
-            text: "Hello! I'm Alfred, XNet's AI assistant. I'm currently having trouble connecting to my brain (Hugging Face). Please try again later."
+            text: "Hello! I am Alfred, XNet AI assistant. I am currently having trouble connecting to my brain (Hugging Face). Please try again later."
           }]
         }
       }
