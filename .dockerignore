@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+obj/Stock
+obj/Branding
+obj/Execs
+*.md
+.idx
+.modified
+docs

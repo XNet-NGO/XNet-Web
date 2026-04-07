@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { ContactForm } from '@/components/contact-form';
 import {
   Accordion,
   AccordionContent,
@@ -103,14 +102,16 @@ export default function Home() {
               <Link href="https://buy.stripe.com/9B6cN72Ue17c3aa3Vp8Vi00">Donate</Link>
             </Button>
              <p className="text-md text-muted-foreground mt-8">
-                If you are interested in volunteering or exploring a partnership, please <Link href="#contact" className="text-primary underline hover:text-primary/80">reach out to us via our contact form</Link>.
+                If you are interested in volunteering or exploring a partnership, please <a href="mailto:pr@xnet.ngo" className="text-primary underline hover:text-primary/80">reach out to us at pr@xnet.ngo</a>.
               </p>
           </div>
         </section>
         
         <section id="contact" className="py-20 md:py-24 bg-card/80">
-          <div className="container mx-auto px-4">
-            <ContactForm />
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4">XNet</h2>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4">Get in Touch</h3>
+            <p className="text-muted-foreground text-lg">Have a question or a project in mind? We&apos;d love to hear from you. You can reach out to us at <a href="mailto:pr@xnet.ngo" className="text-primary underline hover:text-primary/80">pr@xnet.ngo</a>.</p>
           </div>
         </section>
       </main>

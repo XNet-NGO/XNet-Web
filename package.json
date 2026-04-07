@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "deploy": "npm run build && pm2 restart xnet-web",
-    "reload": "pm2 restart xnet-web"
+    "deploy": "bash deploy/deploy.sh",
+    "reload": "docker restart xnet-web"
   },
   "dependencies": {
     "@aws-sdk/client-bedrock": "^3.962.0",
