@@ -1,4 +1,5 @@
 "use client";
+import ReactMarkdown from "react-markdown";
 
 import { useState, useRef, useEffect } from "react";
 import { aiChatPersona } from "@/ai/flows/ai-chat-persona";
@@ -123,7 +124,7 @@ export function AiChat() {
                     : "bg-muted"
                 )}
                 >
-                <p className="text-sm leading-relaxed">{message.content}</p>
+                <div className="text-sm leading-relaxed prose prose-sm dark:prose-invert max-w-none"><ReactMarkdown>{message.content}</ReactMarkdown></div>
                 </div>
                 {message.role === "user" && (
                 <Avatar className="w-8 h-8 border-2 border-muted-foreground/50">

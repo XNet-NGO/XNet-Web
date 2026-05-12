@@ -2,6 +2,10 @@ const GATEWAY_URL = process.env.GATEWAY_URL || "https://inf.xnet.ngo";
 const GATEWAY_KEY = process.env.GATEWAY_KEY || "aiope-gateway-key";
 const MODEL = process.env.GATEWAY_MODEL || "llama/qwen3.5-2b-heretic";
 
+function stripThoughts(text: string): string {
+  return text.replace(/<thought>[\s\S]*?<\/thought>/g, '').trim();
+}
+
 export async function invokeHuggingFaceChat(messages: any[], systemPrompt?: string) {
   try {
     const chatMessages = [
@@ -26,11 +30,13 @@ export async function invokeHuggingFaceChat(messages: any[], systemPrompt?: stri
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
     const data = await res.json();
 
+    const raw = data.choices[0].message.content || data.choices[0].message.reasoning_content || "I couldn't generate a response.";
+
     return {
       output: {
         message: {
           content: [{
-            text: data.choices[0].message.content || data.choices[0].message.reasoning_content || "I couldn't generate a response."
+            text: stripThoughts(raw)
           }]
         }
       }
