@@ -1,7 +1,6 @@
 'use server';
 
 import { z } from 'zod';
-import nodemailer from 'nodemailer';
 
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -24,39 +23,34 @@ export async function submitContactForm(
 
   const { name, email, message } = validatedFields.data;
 
-  // SMTP Configuration
-  const smtpHost = process.env.SMTP_HOST;
-  const smtpPort = parseInt(process.env.SMTP_PORT || '587');
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpSecure = process.env.SMTP_SECURE === 'true'; // true for 465, false for other ports
+  // Inboxed-web Configuration
+  const inboxedUrl = process.env.INBOXED_URL;
+  const inboxedPin = process.env.INBOXED_PIN;
 
-  if (!smtpHost || !smtpUser || !smtpPass) {
-    console.error('SMTP configuration is missing.');
+  if (!inboxedUrl || !inboxedPin) {
+    console.error('Inboxed-web configuration is missing.');
     return {
       success: false,
-      message: 'Server configuration error: SMTP settings are missing. Please contact the administrator.',
+      message: 'Server configuration error: Inboxed service is not configured. Please contact the administrator.',
     };
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
+    const response = await fetch(`${inboxedUrl}/api/messages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
     });
 
-    await transporter.sendMail({
-      from: `"XNet Contact Form" <${smtpUser}>`, // sender address
-      to: "joshuadoucette@xnet.ngo", // list of receivers
-      replyTo: email,
-      subject: `New contact form submission from ${name}`, // Subject line
-      html: `You have a new message from <strong>${name}</strong> (${email}):<br><br>${message.replace(/\n/g, '<br>')}`, // html body
-    });
+    if (!response.ok) {
+      throw new Error(`Inboxed API returned ${response.status}`);
+    }
 
     return {
       success: true,
@@ -64,7 +58,7 @@ export async function submitContactForm(
     };
 
   } catch (error: any) {
-    console.error('Error sending contact email:', error);
+    console.error('Error submitting contact form to inboxed-web:', error);
     return {
       success: false,
       message: `There was an error sending your message: ${error.message || 'Please try again later.'}`,

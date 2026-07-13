@@ -9,6 +9,7 @@ Official website for [XNet](https://xnet.ngo), a nonprofit organization dedicate
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
 - **AI Chatbot:** Alfred — powered by Qwen 3.5 2B via [AIOPE Gateway](https://github.com/XNet-NGO/aiope-gateway) (OpenAI-compatible API)
+- **Contact Form Backend:** [inboxed-web](https://github.com/XNet-NGO/inboxed-web) for message management
 - **Deployment:** Docker container behind Caddy reverse proxy
 
 ## Features
@@ -65,3 +66,17 @@ Internet → Caddy (:443 TLS) → xnet-web container (:3000)
 ## License
 
 © XNet. All Rights Reserved.
+### Environment
+
+Create `.env.production` in the project root:
+
+```env
+# Inboxed Web Backend
+INBOXED_URL=https://inbox.example.com
+INBOXED_PIN=<your-inbox-pin>
+
+# AI Gateway
+GATEWAY_URL=http://localhost:8082
+GATEWAY_KEY=<your-gateway-api-key>
+GATEWAY_MODEL=llama/qwen3.5-2b-heretic
+```
