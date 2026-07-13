@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion"
 import { mission, nonprofit, values } from '@/lib/company-info';
 import { Button } from '@/components/ui/button';
+import { ContactForm } from '@/components/contact-form';
 
 const heroImage = PlaceHolderImages.find(p => p.id === 'hero-background');
 
@@ -108,10 +109,10 @@ export default function Home() {
         </section>
         
         <section id="contact" className="py-20 md:py-24 bg-card/80">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-4">XNet</h2>
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">Get in Touch</h3>
-            <p className="text-muted-foreground text-lg">Have a question or a project in mind? We&apos;d love to hear from you. You can reach out to us at <a href="mailto:pr@xnet.ngo" className="text-primary underline hover:text-primary/80">pr@xnet.ngo</a>.</p>
+          <div className="container mx-auto px-4 max-w-2xl">
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-2 text-center">Get in Touch</h2>
+            <p className="text-muted-foreground text-lg text-center mb-8">Have a question or a project in mind? We&apos;d love to hear from you.</p>
+            <ContactForm />
           </div>
         </section>
       </main>
